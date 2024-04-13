@@ -1,0 +1,18 @@
+package sut;
+
+public class TestEdgePairCoverage {
+
+//	ONE == OTHER  [1,2]
+	
+//	ONE == NULL || OTHER == NULL  [1,3,4]
+
+//	SE UM TEM NEXT E OUTRO NAO [1,3,5,6,7,8,4]
+	
+//	AMBOS NAO TEM NEXT- SAO EQUALS [1,3,5,6,7,8,9]
+	
+//	TEM 1 ELEMENTO NO MINIMO EM CADA LISTA E NUMA DELAS NAO TEM SEGUNDO [1,3,5,6,7,10,7,8,4]
+	
+//	 TEM 1 ELEMENTO E ESSE PRIMEIRO É DIFERENTE  [1,3,5,6,7,10,7,10,11]
+	
+	
+}
