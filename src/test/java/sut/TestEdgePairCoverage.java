@@ -35,7 +35,7 @@ public class TestEdgePairCoverage {
 		assertFalse(tree.equals(tree2));
 	}
 	
-//	AMBOS NAO TEM NEXT- SAO EQUALS [1,3,5,6,7,8,9]
+//	ENTRA NO CICLO E AMBOS NAO TEM NEXT- SAO EQUALS [1,3,5,6,(7,10,7)*,8,9]
 	@Test
 	public void testEqualTrees() {
 		List<Integer> list = Arrays.asList(1,2,4,5,6);
