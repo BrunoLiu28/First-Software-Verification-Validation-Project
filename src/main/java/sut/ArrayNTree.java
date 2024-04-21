@@ -272,7 +272,6 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 			if (children[i].data.compareTo(elem)>0) {
 				// element should not be place here or ahead, go back one position, and end search
 				index--;
-				System.out.println("[A,B,C,F,G,D]");
 				break;
 			}
 			if (children[i].data.compareTo(elem)<0)  
