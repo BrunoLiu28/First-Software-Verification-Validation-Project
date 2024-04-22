@@ -18,12 +18,15 @@ public class TestBaseChoiceCoverage {
 	 * [empty]
 	 * 
 	 * tree2
-	 * [empty, null]
+	 * [empty, not empty]
 	 * 
+	 * tree2
+	 * [null, not null]
 	 * 
 	 * intersection
 	 * [empty, full, partial] 
 	 * 
+	 * (charaac)
 	 * tests trees:
 	 * (empty, empty)
 	 * (empty, null)
