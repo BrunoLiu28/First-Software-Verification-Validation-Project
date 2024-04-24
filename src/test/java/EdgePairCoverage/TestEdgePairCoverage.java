@@ -1,4 +1,4 @@
-package sut;
+package EdgePairCoverage;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -8,8 +8,10 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class TestPrimePathCoverage {
-	
+import sut.ArrayNTree;
+
+public class TestEdgePairCoverage {
+
 //	ONE == OTHER  [1,2]
 	@Test
 	public void testSameObject() {
@@ -17,32 +19,19 @@ public class TestPrimePathCoverage {
 		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
 		assertTrue(tree.equals(tree));
 	}
-	
-//	SE UM TEM NEXT E OUTRO NAO [1,3,5,6,7,8,4]
+//	ONE == NULL || OTHER == NULL  [1,3,4]
 	@Test
-	public void testOneDontHaveNex3t() {
-		List<Integer> list = Arrays.asList(1);
-		List<Integer> list2 = Arrays.asList();
+	public void testOneNull() {
+		List<Integer> list = Arrays.asList(1,2);
 		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
-		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2, 4);
-		assertFalse(tree.equals(tree2));
-	}
-	
-	
-	@Test
-	public void testOneDontHaveNex3t4() {
-		List<Integer> list = Arrays.asList(1);
-		List<Integer> list2 = Arrays.asList(2);
-		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
-		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2, 4);
-		assertFalse(tree.equals(tree2));
+		assertFalse(tree.equals(null));
 	}
 
-//	TEM 1 ELEMENTO NO MINIMO EM CADA LISTA E NUMA DELAS NAO TEM SEGUNDO [1,3,5,6,7,10,7,8,4]
+//	SE UM TEM NEXT E OUTRO NAO [1,3,5,6,7,8,4]
 	@Test
-	public void testOneDontHaveNex3t42() {
-		List<Integer> list = Arrays.asList(1,4);
-		List<Integer> list2 = Arrays.asList(1);
+	public void testOneDontHaveNext() {
+		List<Integer> list = Arrays.asList(1);
+		List<Integer> list2 = Arrays.asList();
 		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
 		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2, 4);
 		assertFalse(tree.equals(tree2));
@@ -58,6 +47,15 @@ public class TestPrimePathCoverage {
 		assertTrue(tree.equals(tree2));
 	}
 	
+//	TEM 1 ELEMENTO NO MINIMO EM CADA LISTA E NUMA DELAS NAO TEM SEGUNDO [1,3,5,6,7,10,7,8,4]
+	@Test
+	public void testOneHasMoreThanOther() {
+		List<Integer> list = Arrays.asList(1,2);
+		List<Integer> list2 = Arrays.asList(1);
+		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
+		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2, 4);
+		assertFalse(tree.equals(tree2));
+	}
 	
 //	 TEM 1 ELEMENTO E ESSE PRIMEIRO É DIFERENTE  [1,3,5,6,7,10,7,10,11]
 	@Test
@@ -68,4 +66,5 @@ public class TestPrimePathCoverage {
 		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2, 4);
 		assertFalse(tree.equals(tree2));
 	}
+	
 }
