@@ -2,6 +2,7 @@ package BasedChoiceCoverage;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,12 +13,8 @@ import sut.ArrayNTree;
 
 public class TestBaseChoiceCoverage {
 	
-	/*
-	 * 
-	 * (tree1, tree2, intersection)
-	 * 
-	 * tree1
-	 * [empty]
+	/* tree1
+	 * [empty, not empty]
 	 * 
 	 * tree2
 	 * [empty, not empty]
@@ -28,85 +25,74 @@ public class TestBaseChoiceCoverage {
 	 * intersection
 	 * [empty, full, partial] 
 	 * 
-	 * (charaac)
-	 * tests trees:
-	 * (empty, empty)
-	 * (empty, null)
-	 * (empty, not empty)
-	 * ----
-	 * (empty, empty)
-	 * (not empty, empty)
-	 * (empty, null)
-	 * (not empty, null)
+	 * (tree1, tree1, tree2, intersection)
 	 * 
-	 * tests intersection:
-	 * (empty)
-	 * (full)
-	 * (partial)
+	 * Base Choice
+	 * (!empty, !empty, !null, empty)
 	 * 
+	 * Other Choices
+	 * (empty, !empty, !null, empty)
+	 * (!empty, empty, !null, empty)
+	 * (!empty, !empty, null, empty)
+	 * (!empty, !empty, !null, full)
+	 * (!empty, !empty, !null, partial)
 	 * */
 	
-	
-	//(empty, empty)
+	//(!empty, !empty, !null, empty)
 	@Test
-	public void testTree1EmptyTree2EmptyBCC() {
+	public void testBaseChoice() {
 		ArrayNTree<Integer> tree = new ArrayNTree<>(4);
+		tree.insert(1);
 		ArrayNTree<Integer> tree2 = new ArrayNTree<>(4);
-		assertTrue(tree.equals(tree2));
+		tree2.insert(4);
+		assertFalse(tree.equals(tree2));
 	}
 	
-	//(empty, null)
+	//(empty, !empty, !null, empty)
 	@Test
-	public void testTree1EmptyTree2nullBCC() {
+	public void testTree1EmptyBCC() {
+		ArrayNTree<Integer> tree = new ArrayNTree<>(4);
+		ArrayNTree<Integer> tree2 = new ArrayNTree<>(4);
+		tree2.insert(2);
+		assertThrows(NullPointerException.class, () -> assertTrue(tree.equals(tree2)));
+	}
+	
+	
+	//(!empty, empty, !null, empty)
+	@Test
+	public void testTree2EmptyBCC() {
+		ArrayNTree<Integer> tree = new ArrayNTree<>(4);
+		tree.insert(9);
+		ArrayNTree<Integer> tree2 = new ArrayNTree<>(4);
+		assertFalse(tree.equals(tree2));
+	}
+	
+	//(!empty, !empty, null, empty)
+	@Test
+	public void testTree2NullBCC() {
 		ArrayNTree<Integer> tree = new ArrayNTree<>(4);
 		ArrayNTree<Integer> tree2 = null;
 		assertFalse(tree.equals(tree2));
 	}
 	
-	//(empty, not empty)
+	//(!empty, !empty, !null, full)
 	@Test
-	public void testTree1EmptyTree2NotEmptyBCC() {
-		List<Integer> list = Arrays.asList(1,2);
-		ArrayNTree<Integer> tree = new ArrayNTree<>(4);
-		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list,4);
-		assertFalse(tree.equals(tree2));
-	}
-	
-	//(not empty, empty)
-	@Test
-	public void testTree1NotEmptyTree2EmptyBCC() {
-		List<Integer> list = Arrays.asList(1,2);
-		ArrayNTree<Integer> tree = new ArrayNTree<>(list,4);
-		ArrayNTree<Integer> tree2 = new ArrayNTree<>(4);
-		assertFalse(tree.equals(tree2));
-	}
-	
-	//(not empty, null)
-	@Test
-	public void testTree1NotEmptyTree2NullBCC() {
-		List<Integer> list = Arrays.asList(1,2);
-		ArrayNTree<Integer> tree = new ArrayNTree<>(list,4);
-		ArrayNTree<Integer> tree2 = null;
-		assertFalse(tree.equals(tree2));
-	}
-	
-	//(not empty, null)
-	@Test
-	public void testIntersectionfull() {
-		List<Integer> list = Arrays.asList(30,60,90,20,25,75,80,88,98);
-		List<Integer> list2 = Arrays.asList(30,60,90,20,25,75,80,88,98);
-		ArrayNTree<Integer> tree = new ArrayNTree<>(list,3);
-		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list,3);
+	public void testIntersectionFullBCC() {
+		List<Integer> list = Arrays.asList(1,3,5,2);  
+		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
+		List<Integer> list2 = Arrays.asList(1,3,5,2);  
+		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2, 4);
 		assertTrue(tree.equals(tree2));
 	}
-	
-	//(not empty, null)
+
+	//(!empty, !empty, !null, partial)
 	@Test
-	public void testIntersectionPartial() {
-		List<Integer> list = Arrays.asList(30,60,90,20,25,75,80,88,98);
-		List<Integer> list2 = Arrays.asList(30,60,90,20,25,75,10,70,98);
-		ArrayNTree<Integer> tree = new ArrayNTree<>(list,4);
-		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2,4);
+	public void testIntersectionPartialBCC() {
+		List<Integer> list = Arrays.asList(1,3,5,2);  
+		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
+		List<Integer> list2 = Arrays.asList(1,3,5,4);  
+		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2, 4);
 		assertFalse(tree.equals(tree2));
 	}
+	
 }

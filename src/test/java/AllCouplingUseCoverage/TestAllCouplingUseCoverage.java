@@ -8,74 +8,47 @@ import java.util.List;
 
 import org.junit.Test;
 
+import sut.ArrayNTree;
+
 public class TestAllCouplingUseCoverage {
 	
-////	  Delete: [1,2]
-//	@Test
-//	public void testDeleteEmptyTree() {
-//		List<Integer> list = Arrays.asList();
-//		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
-//		tree.delete(2);
-////		assertTrue(tree.equals(tree));
-//	}
-//	
-////	  Delete: [1,3,4]
-//	@Test
-//	public void testDeleteNotInAndLeaf() {
-//		List<Integer> list = Arrays.asList(1);
-//		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
-//		tree.delete(2);
-//
-//	}
-//	
-//	  Delete: [1,3,5,7,9]
-//	  ProposePosition: [A,B,C,F,G,D]
-//	@Test
-//	public void testDeleteNotInAndLeaf2() {
-//		List<Integer> list = Arrays.asList(2,5);
-//		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
-//		tree.delete(3);
-//
-//	}
-//	
-//	  Delete: [1,3,5,7,10,12,13]
-//	  ProposePosition: [A,(B,C,F,H,I,J,B)+,D]
-//	[A,B,C,F,H,J,B,D] IMPOSSIVEL POR ISSO ADAPTADO FICA
-	//[A,B,C,F,H,I,J,B,D]
-//	@Test
-//	public void testDeleteNotInAndLeaf3() {
-//		List<Integer> list = Arrays.asList(20,30,40);
-//		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
-//		tree.delete(40);
-//
-//	}
+	/*
+	 * This tests:
+	 * variable position used in function delete that is last defined in node A
+	 * variable children used in function compact that is last defined in node 12
+	 * variable elem used in function proposePosition that is last defined in node 1
+	 * */
+	@Test
+	public void test1() {
+		List<Integer> list = Arrays.asList(1,2);  
+		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
+		tree.delete(2);
+	}
 	
-//	  Delete: [1,3,5,6,8,13]
-//	@Test
-//	public void testDeleteNotInAndLeaf4() {
-//		List<Integer> list = Arrays.asList(20,30);
-//		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 1);
-//		tree.delete(20);
-//
-//	}
+	/*
+	 * This tests:
+	 * variable position used in function delete that is last defined in node G
+	 * variable elem used in function proposePosition that is last defined in node 1
+	 * */
+	@Test
+	public void test2() {
+		List<Integer> list = Arrays.asList(1,4);  
+		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
+		tree.delete(3);
+	}
 	
-	
-
-
-//	[A,B,C,F,H,J,B,D] IMPOSSIVEL POR ISSO ADAPTADO FICA
-//	[A,B,C,F,H,I,J,B,D]
-//	@Test
-//	public void testDeleteNotInAndLeaf3() {
-//		List<Integer> list = Arrays.asList(20,30);
-//		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
-//		tree.delete(25);
-//
-//	}
-	
-//	COMPACT
-//	[a,b,c]
-//	[a,b,d,f,g,i]
-//	[a,b,d,e,b,c]
-	
+	/*
+	 * This tests:
+	 * variable position used in function delete that is last defined in node A
+	 * variable position used in function delete that is last defined in node I
+	 * variable children used in function compact that is last defined in node 8
+	 * variable elem used in function proposePosition that is last defined in node 1
+	 * */
+	@Test
+	public void test3() {
+		List<Integer> list = Arrays.asList(1,2,3,4);  
+		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 3);
+		tree.delete(1);
+	}
 
 }
