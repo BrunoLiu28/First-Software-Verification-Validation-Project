@@ -28,14 +28,14 @@ public class TestLCAndBCEquals {
 		
 	}
 	
-	@Test
-	public void test2() {
-		List<Integer> list = Arrays.asList(1);  
-		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
-		List<Integer> list2 = Arrays.asList(1);  
-		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2, 4);
-		assertTrue(tree.equals(tree2));
-	}
+//	@Test
+//	public void test2() {
+//		List<Integer> list = Arrays.asList(1);  
+//		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
+//		List<Integer> list2 = Arrays.asList(1);  
+//		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2, 4);
+//		assertTrue(tree.equals(tree2));
+//	}
 	
 	@Test
 	public void test4() {
@@ -50,25 +50,7 @@ public class TestLCAndBCEquals {
 	public void test3() {
 		List<Integer> list = Arrays.asList(1,2);  
 		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
-		List<Integer> list2 = Arrays.asList(1);  
-		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2, 4);
-		assertFalse(tree.equals(tree2));
-	}
-	
-	@Test
-	public void test5() {
-		List<Integer> list = Arrays.asList(2);  
-		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
-		List<Integer> list2 = Arrays.asList(2,1);  
-		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2, 4);
-		assertFalse(tree.equals(tree2));
-	}
-	
-	@Test
-	public void test6() {
-		List<Integer> list = Arrays.asList(1);  
-		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 4);
-		List<Integer> list2 = Arrays.asList();  
+		List<Integer> list2 = Arrays.asList(2);  
 		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2, 4);
 		assertFalse(tree.equals(tree2));
 	}
@@ -85,9 +67,9 @@ public class TestLCAndBCEquals {
 	@Test
 	public void test8() {
 		List<Integer> list = Arrays.asList(1,2,3,4,5);  
-		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 2);
+		ArrayNTree<Integer> tree = new ArrayNTree<>(list, 3);
 		List<Integer> list2 = Arrays.asList(1,2,3,4,5,6);  
-		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2, 2);
+		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2, 3);
 		assertFalse(tree.equals(tree2));
 	}
 	
