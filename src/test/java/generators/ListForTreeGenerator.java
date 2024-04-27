@@ -13,38 +13,33 @@ import com.pholser.junit.quickcheck.generator.InRange;
 import com.pholser.junit.quickcheck.random.SourceOfRandomness;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
 
-import sut.ArrayNTree;
-
 
 @RunWith(JUnitQuickcheck.class)
-public class TreeGenerator extends Generator<ArrayNTree<Integer>>{
+public class ListForTreeGenerator extends Generator<List<Integer>>{
 
-	public TreeGenerator(Class<ArrayNTree<Integer>> type) {
+	public ListForTreeGenerator(Class<List<Integer>> type) {
 		super(type);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	private int min = 0;
-	private int max = 100;
+	private int max = 1000;
 	private int listLenght = 10;
 	
 	public void configure(InRange range) {
 		min = range.minInt();
 		max = range.maxInt();
-	}
-	
-	@Override
-	public ArrayNTree<Integer> generate(SourceOfRandomness random, GenerationStatus status) {
-		List<Integer> randomInts = generateNonRepeatingRandomInts(min, max, listLenght);
-		System.out.println(randomInts);
+		if(range.maxDouble() <= 1) {
+			listLenght = 10;
+		} else {
+			listLenght = (int) range.maxDouble();
+		}
 		
-		ArrayNTree<Integer> tree = new ArrayNTree<>(randomInts, random.nextInt(10)+1);
-		return tree;
 	}
 
-
-	private static List<Integer> generateNonRepeatingRandomInts(int min, int max, int listLenght) {
-	    if (listLenght > (max - min + 1)) {
+	@Override
+	public List<Integer> generate(SourceOfRandomness random, GenerationStatus status) {
+		if (listLenght > (max - min + 1)) {
 	        throw new IllegalArgumentException("Count cannot be greater than the range of integers.");
 	    }
 	

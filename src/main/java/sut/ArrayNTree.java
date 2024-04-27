@@ -217,7 +217,6 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 		if (data.compareTo(elem)==0) {
 			// we need to replace it with the lowest child (children[0])
 			// and repeat it (to avoid duplicates) until we reach a leaf
-//			System.out.println("NODE 8");
 			data = children[0].data;
 			children[0].delete(data);
 		} else {
@@ -228,8 +227,6 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 			// if elem>all children: need to look below last child
 			if(position==nChildren)  
 				position--;
-			
-//			System.out.println("NODE 12");
 			children[position].delete(elem);			
 		}
 		// if we are at the tree's bottom, the last deletion
@@ -242,8 +239,7 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 
 	// find an eventual single empty tree, and shift all next elements to the left
 	private void compact(ArrayNTree<T>[] children) {
-		for(int i=0; i<nChildren; i++) {
-//			System.out.println("ENTROU");
+		for(int i=0; i<nChildren; i++)
 			if (children[i].isEmpty()) {
 				for(int j=i+1; j<nChildren; j++)
 					children[j-1] = children[j];
@@ -251,7 +247,6 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 				nChildren--;
 				break;
 			}
-		}
 	}
 
 	// shift all indexes i>position one index to the right
@@ -270,23 +265,17 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 	private int proposePosition(T elem) {
 		int index = 0;
 		for(int i=0; i<capacity; i++) {
-//			System.out.println("edge c,e AND c,f");
-			if (children[i] == null || children[i].data.compareTo(elem)==0) {
+			if (children[i] == null || children[i].data.compareTo(elem)==0) 
 				// found an empty slot or the element, return current index
-//				System.out.println("NODE A");
 				break;
-			}
 			if (children[i].data.compareTo(elem)>0) {
 				// element should not be place here or ahead, go back one position, and end search
-//				System.out.println("NODE G");
 				index--;
 				break;
 			}
-			if (children[i].data.compareTo(elem)<0)  {
-				// this child is still smaller, check next one
-//				System.out.println("NODE I");
+			if (children[i].data.compareTo(elem)<0)  
+				// this child is still smaller, check next one 
 				index++;
-			}
 		}
 		return index;
 	}
@@ -312,13 +301,10 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 			return true;
 				
 		if (one != null && other != null) {
-			
-			
 			Iterator<T> it1 = one.iterator();
 			Iterator<T> it2 = other.iterator();
 			
 			while(it1.hasNext() && it2.hasNext())
-
 				if(!it1.next().equals(it2.next()))
 					return false;
 			
