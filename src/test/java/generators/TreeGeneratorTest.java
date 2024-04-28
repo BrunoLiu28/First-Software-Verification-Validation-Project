@@ -19,8 +19,8 @@ import sut.ArrayNTree;
 public class TreeGeneratorTest {
 
 	//MAXDOUBLE IS THE NUMBER OS ELEMENTS THAT THE LIST WILL HAVE
-	@Property(trials=30)
-	public void testTreeInvariant(@InRange(minInt = 1, maxInt = 10000, maxDouble = 30)
+	@Property(trials=100)
+	public void testTreeInvariant(@InRange(minInt = 1, maxInt = 10000, maxDouble = 1000)
 								@From(ListForTreeGenerator.class) List<Integer> list, 
 								@InRange(min = "2", max = "10") int capacity) {
 		
@@ -30,8 +30,8 @@ public class TreeGeneratorTest {
 		assertTrue(tree.equals(tree2));
 	}
 	
-	@Property(trials=30)
-	public void testRemoveAllElements(@InRange(minInt = 1, maxInt = 10000, maxDouble = 30)
+	@Property(trials=100)
+	public void testRemoveAllElements(@InRange(minInt = 1, maxInt = 10000, maxDouble = 1000)
 								@From(ListForTreeGenerator.class) List<Integer> list, 
 								@InRange(min = "2", max = "10") int capacity) {
 		ArrayNTree<Integer> tree =  new ArrayNTree<Integer>(list, capacity);
@@ -41,8 +41,8 @@ public class TreeGeneratorTest {
 		assertTrue(tree.isEmpty());
 	}
 	
-	@Property(trials=30)
-	public void testInsertAndRemoveSameElement(@InRange(minInt = 1, maxInt = 10000, maxDouble = 30)
+	@Property(trials=100)
+	public void testInsertAndRemoveSameElement(@InRange(minInt = 1, maxInt = 10000, maxDouble = 1000)
 								@From(ListForTreeGenerator.class) List<Integer> list, 
 								@InRange(min = "2", max = "10") int capacity) {
 		
@@ -60,8 +60,8 @@ public class TreeGeneratorTest {
         assertTrue(tree.equals(tree2));
 	}
 	
-	@Property(trials=30)
-	public void testInsertingAllElementsAgain(@InRange(minInt = 1, maxInt = 10000, maxDouble = 30)
+	@Property(trials=100)
+	public void testInsertingAllElementsAgain(@InRange(minInt = 1, maxInt = 10000, maxDouble = 1000)
 								@From(ListForTreeGenerator.class) List<Integer> list, 
 								@InRange(min = "2", max = "10") int capacity) {
 		
@@ -80,8 +80,8 @@ public class TreeGeneratorTest {
 				&& size == tree.size() && treeToString.equals(tree.toString()));
 	}
 	
-	@Property(trials=30)
-	public void testInsertingOneElementManyTimes(@InRange(minInt = 1, maxInt = 10000, maxDouble = 30)
+	@Property(trials=100)
+	public void testInsertingOneElementManyTimes(@InRange(minInt = 1, maxInt = 10000, maxDouble = 1000)
 								@From(ListForTreeGenerator.class) List<Integer> list, 
 								@InRange(min = "2", max = "10") int capacity,
 								@InRange(min = "5", max = "70") int insertTimes) {

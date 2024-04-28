@@ -41,10 +41,10 @@ public class TestBaseChoiceCoverage {
 	//(!empty, !empty, !null, empty)
 	@Test
 	public void testBaseChoice() {
-		List<Integer> list = Arrays.asList(1); 
-		ArrayNTree<Integer> tree = new ArrayNTree<>(list,4);
-		List<Integer> list2 = Arrays.asList(4); 
-		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2,4);
+		ArrayNTree<Integer> tree = new ArrayNTree<>(4);
+		tree.insert(1);
+		ArrayNTree<Integer> tree2 = new ArrayNTree<>(4);
+		tree2.insert(4);
 		assertFalse(tree.equals(tree2));
 	}
 	
@@ -52,8 +52,8 @@ public class TestBaseChoiceCoverage {
 	@Test
 	public void testTree1EmptyBCC() {
 		ArrayNTree<Integer> tree = new ArrayNTree<>(4);
-		List<Integer> list2 = Arrays.asList(2); 
-		ArrayNTree<Integer> tree2 = new ArrayNTree<>(list2,4);
+		ArrayNTree<Integer> tree2 = new ArrayNTree<>(4);
+		tree2.insert(2);
 		assertThrows(NullPointerException.class, () -> assertTrue(tree.equals(tree2)));
 	}
 	
@@ -61,8 +61,8 @@ public class TestBaseChoiceCoverage {
 	//(!empty, empty, !null, empty)
 	@Test
 	public void testTree2EmptyBCC() {
-		List<Integer> list = Arrays.asList(9); 
-		ArrayNTree<Integer> tree = new ArrayNTree<>(list,4);
+		ArrayNTree<Integer> tree = new ArrayNTree<>(4);
+		tree.insert(9);
 		ArrayNTree<Integer> tree2 = new ArrayNTree<>(4);
 		assertFalse(tree.equals(tree2));
 	}

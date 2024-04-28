@@ -21,21 +21,26 @@ public class TreeGenerator extends Generator<ArrayNTree<Integer>>{
 
 	public TreeGenerator(Class<ArrayNTree<Integer>> type) {
 		super(type);
-		// TODO Auto-generated constructor stub
 	}
 	
 	private int min = 0;
 	private int max = 100;
-	private int listLenght = 10;
+	private int listLength = 10;
 	
 	public void configure(InRange range) {
 		min = range.minInt();
 		max = range.maxInt();
+		if(range.maxDouble() <= 1) {
+			listLength = 10;
+		} else {
+			listLength = (int) range.maxDouble();
+		}
+		
 	}
 	
 	@Override
 	public ArrayNTree<Integer> generate(SourceOfRandomness random, GenerationStatus status) {
-		List<Integer> randomInts = generateNonRepeatingRandomInts(min, max, listLenght);
+		List<Integer> randomInts = generateNonRepeatingRandomInts(min, max, listLength);
 		System.out.println(randomInts);
 		
 		ArrayNTree<Integer> tree = new ArrayNTree<>(randomInts, random.nextInt(10)+1);
